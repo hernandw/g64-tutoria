@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { addUser } from '../controllers/userControllers.js'
+import { addUser, userLogin } from '../controllers/userControllers.js'
 import { checkCredencialesExists} from '../middlewares/middlewares.js'
 const __dirname = path.resolve();
 const router = express.Router();
@@ -43,5 +43,13 @@ router.get('/url', (req, res) => {
 })
 
 router.post('/register', checkCredencialesExists, addUser)
+
+router.post('/login', userLogin)
+
+router.get('/profile', (req, res) => {
+    res.render('profile', {
+        title: 'Perfil',
+    })
+})
 
 export default router

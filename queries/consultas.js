@@ -1,7 +1,10 @@
 import pool from '../config/db.js';
+import bcrypt from 'bcrypt';
 
 
 const addUserQueries = async (email, password, rol, language) => {
+    const hashedPassword = await bcrypt.hash(password, 10)
+    password = hashedPassword
     try {
         const query = {
             text: "INSERT INTO users (email, password, rol, language) VALUES($1, $2, $3, $4) RETURNING *",
@@ -13,6 +16,26 @@ const addUserQueries = async (email, password, rol, language) => {
     }
 }
 
+const userLoginQueries = async (email, password) => {
+    try {
+        const sql = {
+            text: 'SELECT * FROM users WHERE email = $1',
+            values: [email]
+        }
+        const { rows: usuario } = await pool.query(sql)
+        const { password: hashedPassword } = usuario[0]
+        const isPasswordValid = await bcrypt.compare(password, hashedPassword)
+        if (!isPasswordValid) throw { code: 401, message: "Contraseña incorrecta" }
+        
+
+        console.log(usuario)
+        return usuario
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
-    addUserQueries
+    addUserQueries,
+    userLoginQueries
 }
