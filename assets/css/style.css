@@ -1,0 +1,50 @@
+body {
+  background: #284b63;
+  color: white;
+  font-family: "Hind Siliguri", sans-serif;
+  text-align: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+
+
+.navbar-nav {
+  display: flex;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.navbar .logo{
+    font-weight: bold;
+    font-size: 28px;
+    font-style: italic;
+  }
+  
+
+.navbar .opciones {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .opciones span{
+    cursor: pointer;
+}
+
+.navbar .register-btn {
+  background: #3c6e71;
+  color: white;
+  border-radius: 5px;
+}
+.navbar .login-btn {
+  background: #d9d9d9;
+  color: black;
+  border-radius: 5px;
+}

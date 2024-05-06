@@ -12,3 +12,4 @@
 10. crear el gigignore
 11. guardar el primer y hacer push
 12. levantar el servidor
+13. disponibilizar el archivo principal
