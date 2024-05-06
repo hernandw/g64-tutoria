@@ -1,4 +1,8 @@
 import express from 'express';
+import path from 'path';
+import { addUser } from '../controllers/userControllers.js'
+import { checkCredencialesExists} from '../middlewares/middlewares.js'
+const __dirname = path.resolve();
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -18,5 +22,26 @@ router.get('/register', (req, res) => {
         title: 'register',
     })
 })
+
+router.get('/products', (req, res) => {
+    res.render('products', {
+        title: 'products',
+        productos: ['camisa', 'pantalon', 'zapatos']
+    })
+})
+
+router.get('/muestra', (req, res) => {
+    res.sendFile(__dirname + '/views/index.html')
+})
+
+router.get('/muestra2', (req, res) => {
+    res.send('Esto es una prueba')
+})
+
+router.get('/url', (req, res) => {
+    res.redirect('https://google.com')
+})
+
+router.post('/register', checkCredencialesExists, addUser)
 
 export default router

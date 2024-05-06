@@ -13,13 +13,13 @@ const pool = new Pool({
 })
 
 
-const getDate = async() => {
+/* const getDate = async() => {
     const { rows } = await pool.query('SELECT NOW()');
     console.log(rows);
     return rows
 
 }
 
-getDate()
+getDate() */
 
 export default pool
